@@ -82,54 +82,32 @@
 </template>
 
 <script>
+const axios = require("axios");
 export default {
   name: 'app',
   data () {
     return {
       msg: ' !',
-      contacts: [
-    {
-        "_id": "5fa8194d44d70453541ab65b",
-        "First Name": "Jack",
-        "Last Name": "Kerouac",
-        "email adress": "JackKerouac@gmail.com",
-        "Phone": "755 265 985",
-        "Adress": "Rolnicka, Brno, 625 00"
-    },
-    {
-        "_id": "5fa81a183d589f1754615d59",
-        "First Name": "Mirek",
-        "Last Name": "Palecek",
-        "email adress": "MirekPalecek@gmail.com",
-        "Phone": "755 532 852",
-        "Adress": "Benesova, Ostrava, 622 00"
-    },
-    {
-        "_id": "5fa81a4a3d589f1754615d5a",
-        "First Name": "Petra",
-        "Last Name": "Cvilinkova",
-        "email adress": "PetraCvilinkova@gmail.com",
-        "Phone": "756 232 235",
-        "Adress": "U návsi, Kotehulky, 526 33"
-    },
-    {
-        "_id": "5fa81a813d589f1754615d5b",
-        "First Name": "Marek",
-        "Last Name": "Ponocný",
-        "email adress": "MarekPonocny@gmail.com",
-        "Phone": "526 322 252",
-        "Adress": "U mostu, Praha, 755 026"
-    },
-    {
-        "_id": "5fa81ab43d589f1754615d5c",
-        "First Name": "Lukáš",
-        "Last Name": "Nimrod",
-        "email adress": "LukasNimrod@gmail.com",
-        "Phone": "755 589 254",
-        "Adress": "Ukrajinska, Brno, 625 00"
+      contacts: []
     }
-]
+  },
+  methods: {
+    databackend() {
+      axios.get('http://localhost:3000/users/')
+  .then(response => {
+    console.log(response.data);
+    console.log(this);
+     this.contacts=response.data;
+ 
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
     }
+  },
+  mounted() {
+    this.databackend();
   }
 }
 </script>
