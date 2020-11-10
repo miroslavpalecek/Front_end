@@ -57,7 +57,7 @@
             Looks good!
           </div>
         </div>
-        <<div class="col-md-3 mb-3">
+        <div class="col-md-3 mb-3">
           <label for="validationServer04">Phone</label>
           <input type="text" class="form-control is-valid" id="validationServer04" value="Otto" v-model="objektsdaty.ctvrtyklic" required>
           <div class="valid-feedback">
