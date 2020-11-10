@@ -32,18 +32,18 @@
     <button type="button" class="btn btn-success">Show Contacts</button>
    
 
-    <form>
+    <form @submit="posliHovna">
       <div class="form-row">
         <div class="col-md-6 mb-3">
           <label for="validationServer01">First name</label>
-          <input type="text" class="form-control is-valid" id="validationServer01" value="Mark" required>
+          <input type="text" class="form-control is-valid" id="validationServer01" value="Mark" v-model="objektsdaty.prvniklic" required>
           <div class="valid-feedback">
             Looks good!
           </div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="validationServer02">Last name</label>
-          <input type="text" class="form-control is-valid" id="validationServer02" value="Otto" required>
+          <input type="text" class="form-control is-valid" id="validationServer02" value="Otto" v-model="objektsdaty.druhyklic" required>
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -52,25 +52,23 @@
       <div class="form-row">
         <div class="col-md-6 mb-3">
           <label for="validationServer03">Email adress</label>
-          <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
-          <div id="validationServer03Feedback" class="invalid-feedback">
-            Please provide a valid city.
+          <input type="text" class="form-control is-valid" id="validationServer03" value="Otto" v-model="objektsdaty.tretiklic" required>
+          <div class="valid-feedback">
+            Looks good!
           </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <<div class="col-md-3 mb-3">
           <label for="validationServer04">Phone</label>
-          <select class="custom-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
-          </select>
-          <div id="validationServer04Feedback" class="invalid-feedback">
-            Please select a valid state.
+          <input type="text" class="form-control is-valid" id="validationServer04" value="Otto" v-model="objektsdaty.ctvrtyklic" required>
+          <div class="valid-feedback">
+            Looks good!
           </div>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="validationServer05">Adress</label>
-          <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required>
-          <div id="validationServer05Feedback" class="invalid-feedback">
+          <label for="validationServer04">Adress</label>
+          <input type="text" class="form-control is-valid" id="validationServer04" value="Otto" v-model="objektsdaty.ctvrtyklic" required>
+          <div class="valid-feedback">
+            Looks good!
           
           </div>
         </div>
@@ -88,7 +86,15 @@ export default {
   data () {
     return {
       msg: ' !',
-      contacts: []
+      contacts: [],
+      objektsdaty: {
+        prvniklic: 'krestni jmeno',
+        druhyklic: 'prijmeni',
+        tretiklic: 'emailadress',
+        ctvrtyklic: 'Phone'
+        
+    
+      }
     }
   },
   methods: {
@@ -104,6 +110,11 @@ export default {
     console.log(error);
   });
 
+    },
+    poslidata(e) {
+      e.preventDefault();
+      console.log('rad bych odeslal data, ale jeste nejsem provazany');
+      console.log(this.objektsdaty);
     }
   },
   mounted() {
