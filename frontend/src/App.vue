@@ -32,7 +32,7 @@
     <button type="button" class="btn btn-success">Show Contacts</button>
    
 
-    <form @submit="posliHovna">
+    <form @submit="poslidata">
       <div class="form-row">
         <div class="col-md-6 mb-3">
           <label for="validationServer01">First name</label>
@@ -65,8 +65,8 @@
           </div>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="validationServer04">Adress</label>
-          <input type="text" class="form-control is-valid" id="validationServer04" value="Otto" v-model="objektsdaty.ctvrtyklic" required>
+          <label for="validationServer05">Adress</label>
+          <input type="text" class="form-control is-valid" id="validationServer05" value="Otto" v-model="objektsdaty.patyklic" required>
           <div class="valid-feedback">
             Looks good!
           
@@ -74,7 +74,7 @@
         </div>
       </div>
       
-      <button class="btn btn-primary" type="submit">Submit form</button>
+      <button class="btn btn-primary" type="submit">Save Data</button>
     </form>
   </div>
 </template>
@@ -88,10 +88,11 @@ export default {
       msg: ' !',
       contacts: [],
       objektsdaty: {
-        prvniklic: 'krestni jmeno',
-        druhyklic: 'prijmeni',
-        tretiklic: 'emailadress',
-        ctvrtyklic: 'Phone'
+        prvniklic: '',
+        druhyklic: '',
+        tretiklic: '',
+        ctvrtyklic: '',
+        patyklic: ''
         
     
       }
@@ -102,8 +103,8 @@ export default {
       axios.get('http://localhost:3000/users/')
   .then(response => {
     console.log(response.data);
-    console.log(this);
-     this.contacts=response.data;
+
+  this.contacts=response.data;
  
   })
   .catch(function (error) {
@@ -112,9 +113,26 @@ export default {
 
     },
     poslidata(e) {
-      e.preventDefault();
-      console.log('rad bych odeslal data, ale jeste nejsem provazany');
-      console.log(this.objektsdaty);
+        e.preventDefault();
+         console.log('rad bych odeslal');
+       const axios = require('axios')
+       
+       axios.post('http://localhost:3000/users/', {
+        "First Name":this.objektsdaty.prvniklic,
+        "Last Name":this.objektsdaty.druhyklic,
+        "email adress":this.objektsdaty.tretiklic,
+        "Phone": this.objektsdaty.ctvrtyklic,
+        "Adress":this.objektsdaty.patyklic
+
+       })
+    .then( function (response) {
+      console.log(response);
+   
+    })
+      .catch(function(error) {
+      console.log(error);
+    });
+      
     }
   },
   mounted() {
